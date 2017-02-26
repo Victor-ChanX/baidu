@@ -1,0 +1,73 @@
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+body{font-size: 12px;}
+img{border: none;}
+li{text-align: left;}
+input,select,textarea{outline: none;}
+textarea{resize: none;}
+a{text-decoration:none;}
+/*清除样式*/
+.content{
+	margin-right: 20px;
+	background-color: #eee;
+	height: auto;
+	border: 1px solid #999;
+	padding: 20px;
+	overflow: auto;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.content_left{
+	width: 160px;
+	height: 80px;
+	background-color: #fff;
+	border: 1px solid #999;
+	float: left;
+	padding: 20px;
+	margin-left: -100%;
+}
+.content_left_box{
+	width: 80px;
+	height: 80px;
+	background-color: #eee;
+	border: 1px solid #999;
+	float: left;
+	text-align: center;
+}
+.box_p2{
+	margin-top: 24px;
+}
+.box_p{
+	margin-left: 100px;
+}
+.content_middle{
+	width: 100%;
+	float: left;
+}
+.content_middle_body{
+	margin:0px 140px 0px 220px;
+	background-color: #fff;
+	border: 1px solid #999;
+	height: auto;
+	overflow: auto;
+	padding:20px;
+}
+.content_right{
+	height: auto;
+	background-color: #fff;
+	border: 1px solid #999;
+	width: 80px;
+	float: right; 
+	padding: 20px;
+	margin-left: -200px;
+}
+.content_right_box{
+	width: 80px;
+	height: 80px;
+	background-color: #eee;
+	margin-bottom: 20px;
+	text-align: center;
+	border: 1px solid #999;
+}
+.content_right_box p{
+	padding-top: 24px;
+}
