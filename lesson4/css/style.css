@@ -1,0 +1,38 @@
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+body{font-size: 12px;}
+img{border: none;}
+li{text-align: left;}
+input,select,textarea{outline: none;}
+textarea{resize: none;}
+a{text-decoration:none;}
+/*清除样式*/
+
+.center{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -200px;
+	width: 400px;
+	height: 200px;
+	background-color: #ccc;
+	overflow: hidden;
+}
+.circular1{
+	background-color: #fc0;
+	width: 100px;
+  	height: 100px;
+  	border-radius: 0px 0px 50px 0;
+  	position: absolute;
+  	left: -50px;
+  	top: -50px;
+}
+.circular2{
+	background-color: #fc0;
+	width: 100px;
+  	height: 100px;
+  	border-radius: 50px 0px 0px 0;
+  	position: absolute;
+	left: 350px;
+	top: 150px;
+}
