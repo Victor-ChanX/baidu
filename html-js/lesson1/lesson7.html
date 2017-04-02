@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lesson7 JS二叉树</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#father{
+			display: flex;
+			margin: 20px;
+			padding: 20px;
+			border: 1px solid black;
+			width: 1000px;
+			height: 800px;
+			justify-content: space-between;
+			flex-direction:column;
+			background-color: #fff;
+		}
+		.A{
+			display: flex;
+			padding: 20px;
+			width: 960px;
+			height: 350px;
+			border: 1px solid black;
+			justify-content: space-between;
+			background-color: #fff;
+		}
+		.B{
+			display: flex;
+			padding:20px;
+			width: 430px;
+			height: 300px;
+			border: 1px solid black;
+			justify-content: space-between;
+			background-color: #fff;
+		}
+		.C{
+			display: flex;
+			padding:20px;
+			width: 165px;
+			height: 250px;
+			border: 1px solid black;
+			flex-direction:column;
+			justify-content: space-between;
+			background-color: #fff;
+		}
+		.D{
+			display: flex;
+			padding:20px;
+			width: 125px;
+			height: 75px;
+			border: 1px solid black;
+			justify-content: space-between;
+			background-color: #fff;
+		}
+		input{
+			width: 200px;
+			height: 50px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="father">
+		<div class="A">
+			<div class="B">
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+			</div>
+			<div class="B">
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+			</div>
+		</div>
+		<div class="A">
+			<div class="B">
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+			</div>
+			<div class="B">
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+				<div class="C">
+					<div class="D"></div>
+					<div class="D"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="button" value="前序" id="frond">
+	<input type="button" value="中序" id="middle">
+	<input type="button" value="后序" id="behind">
+</body>
+<script type="text/javascript">
+	var arr=[];
+	var frond=document.getElementById("frond");
+	var mid=document.getElementById("middle");
+	var behind=document.getElementById("behind");
+	var father=document.getElementById("father");
+	//前序函数
+	function preOrder(node){
+		if (node !== null) {
+			arr.push(node);
+			preOrder(node.firstElementChild);
+			preOrder(node.lastElementChild);
+		};
+	};
+	//中序函数
+	function inOrder(node){
+		if (node !== null){
+			inOrder(node.firstElementChild);
+			arr.push(node);
+			inOrder(node.lastElementChild);
+		};
+	};
+	//后序函数
+	function postOrder(node){
+		if (node !== null){
+			preOrder(node.firstElementChild);
+			preOrder(node.lastElementChild);
+			arr.push(node);
+		}
+	}
+	//改变颜色
+	var timer;
+	function changeColor(){
+		var i =0;
+		clearInterval(timer);
+		arr[i].style.backgroundColor='blue';
+		timer = setInterval(function(){
+			i++;
+			if(i<arr.length){
+				arr[i-1].style.backgroundColor="#fff";
+				arr[i].style.backgroundColor="blue";
+			}else{
+				clearInterval(timer);
+				arr[arr.length-1].style.backgroundColor="#fff";
+			}
+		},500);
+	}
+	frond.onclick=function(){
+		preOrder(father);
+		changeColor();
+	}
+	mid.onclick=function(){
+		inOrder(father);
+		changeColor();
+	}
+	behind.onclick=function(){
+		postOrder(father);
+		changeColor();
+	}
+</script>
+</html>

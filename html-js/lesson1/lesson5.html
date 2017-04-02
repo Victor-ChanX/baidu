@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lesson 5</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	#content {
+		width: 100%;
+		height: 700px;
+		background-color: blue;
+		display: flex;
+		flex-direction: row;
+		justify-content:flex-start;
+		align-items:flex-end;
+	}
+	#content div{
+		width: 1%;
+		height: 20%;
+		background-color: red;
+		margin-right: 10px;
+		display: inline-block;
+    }
+	</style>
+</head>
+<body>
+	<input type="text" id="num">
+	<button id="left-in"">左侧入</button>
+	<button id="right-in"">右侧入</button>
+	<button id="left-out">左侧出</button>
+	<button id="right-out">右侧出</button>
+	<button id="numSort">排序</button>
+	<div>
+		<div id="content"></ul>
+	</div>
+</body>
+<script>
+	var data = document.getElementById("num");
+	var leftIn = document.getElementById("left-in");
+	var rightIn = document.getElementById("right-in");
+	var leftOut = document.getElementById("left-out");
+	var rightOut = document.getElementById("right-out");
+	var ul = document.getElementById("content");
+	var reg = /^\d+$/;
+	leftIn.onclick = function (){
+		if (!reg.test(data.value) || data.value < 0 || data.value > 100){
+			alert ("请输入数值大于0小于100");
+			return false;
+		}
+		var li = document.createElement("div");
+		var text =document.createTextNode(data.value);
+		li.appendChild(text);
+		li.style.height = data.value + "%";
+		ul.insertBefore(li,ul.firstChild);
+	};
+	rightIn.onclick = function (){
+		if (!reg.test(data.value) || data.value < 0 || data.value > 100){
+			alert ("请输入数值大于0小于100");
+			return false;
+		}
+		var li = document.createElement("div");
+		var text =document.createTextNode(data.value);
+		li.appendChild(text);
+		li.style.height = data.value + "%";
+		ul.appendChild(li);
+	}
+	leftOut.onclick = function (){
+		if (ul.hasChildNodes()){
+			//alert(ul.firstChild.innerHTML);
+			ul.removeChild(ul.firstChild);
+		}
+		else{
+            alert("暂无内容");
+            return false;
+        }
+	}
+	rightOut.onclick = function(){
+        if (ul.hasChildNodes()){
+            //alert(ul.lastChild.innerHTML);
+            ul.removeChild(ul.lastChild);
+        }
+        else{
+            alert("暂无内容");
+            return false;
+        }
+    }
+    var timer;
+    //下面是冒泡排序
+    numSort.onclick = function(){
+    	var snapshots=[];//每次排序的集合；
+    	//var timer=null;//定时
+    	var divList = ul.getElementsByTagName("div");
+    	if (divList.length <= 1) {
+    		return	divList;
+    	};
+    	var temp = [];
+    	for(var i = 0;i < divList.length;i++){
+    		var m = divList[i].style.height;
+    		m = m.replace("%","");
+    		temp.push(m);
+    	}
+    	/*temp.sort(function(a,b){
+			return a-b;
+		});*/
+		function bubbleSort(temp){
+			var temp1 = 0;
+			for(var i=0;i<temp.length;i++){
+				for(var j=0;j<temp.length-1-i;j++){
+					if(temp[j]>temp[j+1]){
+						temp1 = temp[j];
+						temp[j]=temp[j+1];
+						temp[j+1]=temp1;
+						snapshots.push(JSON.parse(JSON.stringify(temp)));
+					};
+				};
+			};
+			return temp;
+		};
+		bubbleSort(temp);
+		if (timer !== null) {
+    		clearInterval(timer);
+    	}
+		timer = setInterval(painting,50); 
+		function painting(){
+			var s;
+			s = snapshots.shift();
+			ul.innerHTML= "";
+			if (s !== undefined) {
+				for(var m=0;m <s.length;m++){
+					ul.innerHTML += "<div>"+"</div>"
+					var dataDiv = ul.querySelectorAll("div");
+					dataDiv[m].style.height=s[m]+"%";
+				}
+			}
+			else{
+				function render(){
+					ul.innerHTML="";
+					for(var m = 0;m < temp.length;m++){
+						ul.innerHTML += "<div>"+"</div>"
+						var dataDiv = ul.querySelectorAll("div");
+						dataDiv[m].style.height=temp[m]+"%";
+					}
+				}
+				render();
+				window.clearInterval(timer);
+			}
+		}
+    }
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>耀耀学院lesson1</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding:0;
+		}
+		#name{
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			width: 200px;
+			height: 20px;
+		}
+		.myName{
+			font-weight: bold;
+			line-height: 20px;
+		}
+		#text{
+			color: #ccc;
+			font-size: 12px;
+			margin-left: 40px;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<span class="myName">名称</span>
+        <input type="text" id="name"">
+		<input type="button" value="验证" id="input_name">
+		<p id="text">必填，长度为4~16个字符</p>
+	</form>
+</body>
+<script type="text/javascript">
+	var inputName=document.getElementById("input_name");
+	inputName.onclick=function(){
+		var name=document.getElementById("name");
+		var text=document.getElementById("text");
+		var long = {};
+		long.GetLength = function(str){
+			return str.replace(/[\u0391-\uFFE5]/g,"aa").length;
+		};
+		if (long.GetLength(name.value)>=4 && long.GetLength(name.value)<=16) {
+			name.style.borderColor="#66FF00";
+			text.innerHTML="验证成功";
+			text.style.color="#66FF00";
+		}
+		else if(long.GetLength(name.value)==0){
+			name.style.borderColor="red";
+			text.innerHTML="姓名不能为空";
+			text.style.color="red";
+		}
+		else{
+			name.style.borderColor="red";
+			text.innerHTML="必填，长度为4~16个字符";
+			text.style.color="red";
+		};
+	};
+</script>
+</html>

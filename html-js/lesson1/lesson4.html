@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lesson 4</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	#content li{
+        float: left;
+        margin: 10px;
+        width: 50px;
+        height: 25px;
+        line-height: 25px;
+        list-style: none;
+        background-color: red;
+        color: #ffffff;
+        text-align: center;
+    }
+	</style>
+</head>
+<body>
+	<input type="text" id="num">
+	<button id="left-in"">左侧入</button>
+	<button id="right-in"">右侧入</button>
+	<button id="left-out">左侧出</button>
+	<button id="right-out">右侧出</button>
+	<div>
+		<ul id="content"></ul>
+	</div>
+</body>
+<script>
+	var data = document.getElementById("num");
+	var leftIn = document.getElementById("left-in");
+	var rightIn = document.getElementById("right-in");
+	var leftOut = document.getElementById("left-out");
+	var rightOut = document.getElementById("right-out");
+	var ul = document.getElementById("content");
+	var reg = /^\w+$/;
+	leftIn.onclick = function (){
+		if (!reg.test(data.value)){
+			alert ("请输入数值或字母");
+			return false;
+		}
+		var li = document.createElement("li");
+		var text =document.createTextNode(data.value);
+		li.appendChild(text);
+		ul.insertBefore(li,ul.firstChild);
+	};
+	rightIn.onclick = function (){
+		if (!reg.test(data.value)){
+			alert ("请输入数值或字母");
+			return false;
+		}
+		var li = document.createElement("li");
+		var text =document.createTextNode(data.value);
+		li.appendChild(text);
+		ul.appendChild(li);
+	}
+	leftOut.onclick = function (){
+		if (ul.hasChildNodes()){
+			alert(ul.firstChild.innerHTML);
+			ul.removeChild(ul.firstChild);
+		}
+		else{
+            alert("暂无内容");
+            return false;
+        }
+	}
+	rightOut.onclick = function(){
+        if (ul.hasChildNodes()){
+            alert(ul.lastChild.innerHTML);
+            ul.removeChild(ul.lastChild);
+        }
+        else{
+            alert("暂无内容");
+            return false;
+        }
+    }
+
+</script>
+</html>
